@@ -13,9 +13,19 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gebreshuistransport.nl"),
   title: "Gebr. Eshuis Transport — Vriezenveen",
   description:
     "Gebroeders Eshuis Transport uit Vriezenveen: containertransport en internationaal wegvervoer met karakter. Neem contact met ons op.",
+  openGraph: {
+    title: "Gebr. Eshuis Transport — Vriezenveen",
+    description:
+      "Containertransport en internationaal wegvervoer met karakter, vanuit Vriezenveen.",
+    url: "https://gebreshuistransport.nl",
+    locale: "nl_NL",
+    type: "website",
+    images: ["/fotos/hero.jpg"],
+  },
 };
 
 export default function RootLayout({

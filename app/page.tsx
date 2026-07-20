@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 const contact = {
   phone: "+31 (0)546 12 34 56",
   phoneHref: "tel:+31546123456",
-  email: "info@gebreshuis.nl",
+  email: "info@gebreshuistransport.nl",
   addressLines: ["Transportweg 1", "7671 AB Vriezenveen"],
   mapsUrl: "https://maps.google.com/?q=Vriezenveen",
   kvk: "12345678",
@@ -16,22 +16,21 @@ const contact = {
   ],
 };
 
-// TODO: vervang de src's door echte foto's (bijv. /fotos/foto-1.jpg in public/fotos/)
 const fotos = [
   {
-    src: "/fotos/foto-1.svg",
-    alt: "Scania van Gebr. Eshuis op de weg",
-    caption: "Onderweg door Europa",
-  },
-  {
-    src: "/fotos/foto-2.svg",
-    alt: "Containerchassis van Gebr. Eshuis",
-    caption: "Eigen containerchassis",
-  },
-  {
-    src: "/fotos/foto-3.svg",
-    alt: "Vrachtwagen van Gebr. Eshuis bij vertrek",
+    src: "/fotos/foto-1.jpg",
+    alt: "Twee Scania's van Gebr. Eshuis op het erf",
     caption: "Klaar voor vertrek",
+  },
+  {
+    src: "/fotos/foto-2.jpg",
+    alt: "Twee Scania's van Gebr. Eshuis met containers",
+    caption: "Onderweg met containers",
+  },
+  {
+    src: "/fotos/foto-3.jpg",
+    alt: "De familie achter Gebr. Eshuis voor drie Scania's",
+    caption: "De familie achter de trucks",
   },
 ];
 
@@ -118,16 +117,18 @@ function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-svh flex-col items-center justify-center px-5 pt-16"
+      className="relative flex min-h-svh flex-col items-center justify-center overflow-hidden px-5 pt-16"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,179,71,0.06), transparent 60%)",
-        }}
-      />
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/fotos/hero.jpg"
+          alt=""
+          className="hero-zoom h-full w-full object-cover object-[50%_30%]"
+        />
+        <div className="absolute inset-0 bg-espresso-950/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-espresso-950/70 via-espresso-950/40 to-espresso-950" />
+      </div>
 
       <div className="relative flex w-full max-w-3xl flex-col items-center text-center">
         <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-steel-400 sm:text-xs">
@@ -194,7 +195,7 @@ const diensten = [
   {
     icon: ContainerIcon,
     title: "Containertransport",
-    text: "Containervervoer van en naar de zeehavens, snel en flexibel geregeld met eigen chassis.",
+    text: "Containervervoer van en naar de zeehavens, snel en flexibel geregeld.",
   },
   {
     icon: RouteIcon,
@@ -203,8 +204,8 @@ const diensten = [
   },
   {
     icon: HandshakeIcon,
-    title: "Persoonlijk & betrouwbaar",
-    text: "Een familiebedrijf met korte lijnen, vaste chauffeurs en materieel waar we trots op zijn.",
+    title: "Vaste vervoerder",
+    text: "Als charter rijden we dag in dag uit voor collega-transportbedrijven — met vaste chauffeurs en korte lijnen.",
   },
 ];
 

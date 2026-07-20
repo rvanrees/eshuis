@@ -36,6 +36,20 @@ body {
   color: var(--color-espresso-950);
 }
 
+/* --- Hero: langzame Ken Burns-zoom --- */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.hero-zoom {
+  animation: hero-zoom 26s ease-out forwards;
+}
+
 /* --- Route-marquee --- */
 @keyframes marquee {
   to {
@@ -70,7 +84,8 @@ body {
     transform: none;
     transition: none;
   }
-  .marquee-track {
+  .marquee-track,
+  .hero-zoom {
     animation: none;
   }
 }
