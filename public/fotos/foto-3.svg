@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#251c14"/>
+      <stop offset="1" stop-color="#191209"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <!-- Weg richting horizon -->
+  <g fill="none" stroke="#a8adb5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.45">
+    <path d="M480 620 580 300M720 620 620 300"/>
+    <path d="M600 620v-50M600 520v-40M600 440v-30M600 380v-22"/>
+    <path d="M380 300h440"/>
+  </g>
+  <text x="600" y="812" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="24" letter-spacing="10" fill="#878c95" opacity="0.75">VERVANG DOOR EIGEN FOTO</text>
+</svg>

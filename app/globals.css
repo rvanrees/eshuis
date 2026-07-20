@@ -10,6 +10,12 @@
   --color-cream-400: #a6977d;
   --color-glow-400: #ffb347;
   --color-glow-500: #f59f27;
+  /* Zilvergrijs van het chassis-skirt */
+  --color-steel-200: #e7e9ec;
+  --color-steel-300: #cfd2d8;
+  --color-steel-400: #a8adb5;
+  --color-steel-500: #878c95;
+  --color-steel-600: #5f636b;
 
   --font-script: var(--font-dancing), "Brush Script MT", cursive;
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
@@ -28,6 +34,17 @@ body {
 ::selection {
   background: var(--color-glow-500);
   color: var(--color-espresso-950);
+}
+
+/* --- Route-marquee --- */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 45s linear infinite;
 }
 
 /* --- Scroll-reveal --- */
@@ -52,5 +69,8 @@ body {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .marquee-track {
+    animation: none;
   }
 }

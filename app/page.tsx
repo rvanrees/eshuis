@@ -16,17 +16,63 @@ const contact = {
   ],
 };
 
+// TODO: vervang de src's door echte foto's (bijv. /fotos/foto-1.jpg in public/fotos/)
+const fotos = [
+  {
+    src: "/fotos/foto-1.svg",
+    alt: "Scania van Gebr. Eshuis op de weg",
+    caption: "Onderweg door Europa",
+  },
+  {
+    src: "/fotos/foto-2.svg",
+    alt: "Containerchassis van Gebr. Eshuis",
+    caption: "Eigen containerchassis",
+  },
+  {
+    src: "/fotos/foto-3.svg",
+    alt: "Vrachtwagen van Gebr. Eshuis bij vertrek",
+    caption: "Klaar voor vertrek",
+  },
+];
+
+// TODO: pas de bestemmingen aan naar waar jullie echt rijden
+const routes = [
+  "Vriezenveen",
+  "Rotterdam",
+  "Antwerpen",
+  "Hamburg",
+  "Parijs",
+  "München",
+  "Milaan",
+  "Kopenhagen",
+];
+
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col">
       <Nav />
       <main className="flex-1">
         <Hero />
+        <RouteMarquee />
         <Diensten />
+        <Hairline />
+        <Fotos />
+        <Hairline />
         <Contact />
       </main>
       <Footer />
     </div>
+  );
+}
+
+/* ---------- Zilveren haarlijn, zoals het chassis-skirt ---------- */
+
+function Hairline() {
+  return (
+    <div
+      aria-hidden
+      className="h-px w-full bg-gradient-to-r from-transparent via-steel-500/35 to-transparent"
+    />
   );
 }
 
@@ -84,7 +130,7 @@ function Hero() {
       />
 
       <div className="relative flex w-full max-w-3xl flex-col items-center text-center">
-        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-cream-400 sm:text-xs">
+        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-steel-400 sm:text-xs">
           Transport · Vriezenveen, Holland
         </p>
         <h1 className="mt-6 font-script text-7xl leading-none text-cream-50 sm:text-9xl">
@@ -114,6 +160,34 @@ function Hero() {
   );
 }
 
+/* ---------- Route-marquee ---------- */
+
+function RouteMarquee() {
+  return (
+    <section aria-hidden className="select-none">
+      <Hairline />
+      <div className="overflow-hidden py-5">
+        <div className="marquee-track flex w-max items-center gap-10 pr-10">
+          {[0, 1].map((copy) =>
+            routes.map((route) => (
+              <span
+                key={`${copy}-${route}`}
+                className="flex items-center gap-10"
+              >
+                <span className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-steel-500">
+                  {route}
+                </span>
+                <span className="h-1 w-1 rounded-full bg-glow-500/60" />
+              </span>
+            )),
+          )}
+        </div>
+      </div>
+      <Hairline />
+    </section>
+  );
+}
+
 /* ---------- Diensten ---------- */
 
 const diensten = [
@@ -136,10 +210,7 @@ const diensten = [
 
 function Diensten() {
   return (
-    <section
-      id="diensten"
-      className="scroll-mt-16 border-t border-cream-50/10 py-24 sm:py-32"
-    >
+    <section id="diensten" className="scroll-mt-16 py-24 sm:py-32">
       <div className="mx-auto max-w-5xl px-5 sm:px-6">
         <Reveal>
           <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-glow-400 sm:text-xs">
@@ -153,7 +224,12 @@ function Diensten() {
         <div className="mt-14 grid gap-12 sm:mt-16 sm:grid-cols-3 sm:gap-10">
           {diensten.map((dienst, i) => (
             <Reveal key={dienst.title} delay={i * 100}>
-              <dienst.icon className="h-6 w-6 text-glow-400" />
+              <div className="flex items-center justify-between border-t border-steel-500/25 pt-6">
+                <dienst.icon className="h-6 w-6 text-glow-400" />
+                <span className="text-xs font-semibold tracking-[0.3em] text-steel-500">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
               <h3 className="mt-5 font-semibold text-cream-50">
                 {dienst.title}
               </h3>
@@ -168,14 +244,55 @@ function Diensten() {
   );
 }
 
+/* ---------- Foto's ---------- */
+
+function Fotos() {
+  return (
+    <section className="py-24 sm:py-32">
+      <div className="mx-auto max-w-5xl px-5 sm:px-6">
+        <Reveal>
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-glow-400 sm:text-xs">
+            Onderweg
+          </p>
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-cream-50 sm:text-3xl">
+            Ons materieel
+          </h2>
+        </Reveal>
+
+        <div className="mt-14 grid gap-10 sm:mt-16 sm:grid-cols-3 sm:gap-6">
+          {fotos.map((foto, i) => (
+            <Reveal key={foto.src} delay={i * 100}>
+              <figure className="group">
+                <div className="overflow-hidden rounded-xl border border-steel-500/25">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={foto.src}
+                    alt={foto.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[4/3] w-full object-cover grayscale-[35%] transition-all duration-700 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
+                  />
+                </div>
+                <figcaption className="mt-4 flex items-baseline gap-4">
+                  <span className="text-xs font-semibold tracking-[0.3em] text-steel-500">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-sm text-cream-300">{foto.caption}</span>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- Contact ---------- */
 
 function Contact() {
   return (
-    <section
-      id="contact"
-      className="scroll-mt-16 border-t border-cream-50/10 py-24 sm:py-32"
-    >
+    <section id="contact" className="scroll-mt-16 py-24 sm:py-32">
       <div className="mx-auto max-w-5xl px-5 sm:px-6">
         <Reveal>
           <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-glow-400 sm:text-xs">
@@ -224,8 +341,8 @@ function Contact() {
         </div>
 
         <Reveal delay={200} className="mt-16">
-          <div className="flex items-center gap-5 border-t border-cream-50/10 pt-8">
-            <span className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-cream-400">
+          <div className="flex items-center gap-5 border-t border-steel-500/25 pt-8">
+            <span className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-steel-400">
               Volg ons
             </span>
             <div className="flex gap-4">
@@ -236,7 +353,7 @@ function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  className="text-cream-400 transition-colors hover:text-cream-50"
+                  className="text-steel-400 transition-colors hover:text-cream-50"
                 >
                   <social.icon className="h-5 w-5" />
                 </a>
@@ -260,7 +377,7 @@ function ContactItem({
 }) {
   return (
     <Reveal delay={delay}>
-      <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-cream-400">
+      <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-steel-400">
         {label}
       </h3>
       <div className="mt-3 font-medium text-cream-50">{children}</div>
@@ -272,8 +389,9 @@ function ContactItem({
 
 function Footer() {
   return (
-    <footer className="border-t border-cream-50/10">
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-2 px-5 py-10 text-center text-sm text-cream-400 sm:flex-row sm:justify-between sm:px-6 sm:text-left">
+    <footer>
+      <Hairline />
+      <div className="mx-auto flex max-w-5xl flex-col items-center gap-2 px-5 py-10 text-center text-sm text-steel-400 sm:flex-row sm:justify-between sm:px-6 sm:text-left">
         <p className="font-script text-xl text-cream-50">Gebr. Eshuis</p>
         <p>
           © {new Date().getFullYear()} Gebr. Eshuis Transport · Vriezenveen ·
