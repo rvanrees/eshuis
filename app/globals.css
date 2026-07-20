@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  /* Espresso-bruin van de Scania, crème belettering, één amber accent */
+  --color-espresso-950: #16110c;
+  --color-espresso-900: #1d1610;
+  --color-espresso-850: #241b13;
+  --color-cream-50: #faf6ec;
+  --color-cream-300: #d9cdb6;
+  --color-cream-400: #a6977d;
+  --color-glow-400: #ffb347;
+  --color-glow-500: #f59f27;
+
+  --font-script: var(--font-dancing), "Brush Script MT", cursive;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-espresso-950);
+  color: var(--color-cream-50);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-glow-500);
+  color: var(--color-espresso-950);
+}
+
+/* --- Scroll-reveal --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
