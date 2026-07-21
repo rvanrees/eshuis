@@ -1,6 +1,5 @@
 import Reveal from "@/components/Reveal";
 
-// TODO: vervang deze placeholders door de echte gegevens
 const contact = {
   phone: "+31 (0)6 39 45 61 78",
   phoneHref: "tel:+31639456178",
@@ -30,14 +29,14 @@ const fotos = [
 
 // TODO: pas de bestemmingen aan naar waar jullie echt rijden
 const routes = [
-  "Vriezenveen",
   "Rotterdam",
   "Antwerpen",
   "Hamburg",
   "Parijs",
   "München",
-  "Milaan",
   "Kopenhagen",
+  "Stockholm",
+  "Madrid",
 ];
 
 export default function Home() {
